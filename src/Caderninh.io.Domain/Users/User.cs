@@ -1,6 +1,6 @@
 ﻿using Caderninh.io.Domain.Common;
 
-namespace Caderninh.io.Domain.User
+namespace Caderninh.io.Domain.Users
 {
     public class User : Entity
     {

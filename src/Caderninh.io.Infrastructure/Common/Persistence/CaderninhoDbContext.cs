@@ -1,4 +1,4 @@
-﻿using Caderninh.io.Domain.User;
+﻿using Caderninh.io.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
