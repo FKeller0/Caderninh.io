@@ -21,8 +21,4 @@
     <ProjectReference Include="..\Caderninh.io.Application\Caderninh.io.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Authentication\PasswordHasher\" />
-  </ItemGroup>
-
 </Project>
