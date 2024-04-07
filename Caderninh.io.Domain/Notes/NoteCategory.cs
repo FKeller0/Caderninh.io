@@ -1,23 +1,17 @@
-﻿using ErrorOr;
+﻿using Caderninh.io.Domain.Common;
+using ErrorOr;
 using Throw;
 
 namespace Caderninh.io.Domain.Notes
 {
-    public class NoteCategory
+    public class NoteCategory(string name, Guid userId, Guid? id = null) : Entity(id ?? Guid.NewGuid())
     {
-        public Guid Id { get; private set; }
-        public Guid UserId { get; private set; }
-        public List<Guid> _noteIds { get; set; } = new();
+        public Guid UserId { get; private set; } = userId;
+        public List<Guid> _noteIds { get; set; } = [];
 
-        public string Name { get; set; } = null!;
+        public string Name { get; set; } = name;
 
-        public NoteCategory(string name, Guid userId)
-        {
-            Name = name;
-            UserId = userId;
-        }
-
-        public ErrorOr<Success> AddNotes(Notes notes) 
+        public ErrorOr<Success> AddNotes(Note notes) 
         {
             _noteIds.Throw().IfContains(notes.Id);
 

@@ -1,10 +1,10 @@
-﻿namespace Caderninh.io.Domain.User
+﻿using Caderninh.io.Domain.Common;
+
+namespace Caderninh.io.Domain.User
 {
-    public class User
+    public class User : Entity
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
+        public string Name { get; set; } = null!;        
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
     }

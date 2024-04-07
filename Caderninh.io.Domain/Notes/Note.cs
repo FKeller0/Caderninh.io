@@ -1,18 +1,18 @@
-﻿namespace Caderninh.io.Domain.Notes
-{
-    public class Notes
-    {
-        public Guid Id { get; }
+﻿using Caderninh.io.Domain.Common;
 
+namespace Caderninh.io.Domain.Notes
+{
+    public class Note : Entity
+    {
         public Guid NoteCategoryId { get; }
 
         public string Body { get; set; } = null!;
 
         public DateTime CreatedAt { get; }
 
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
-        public Notes(Guid noteCategoryId, string body, Guid? id)
+        public Note(Guid noteCategoryId, string body, Guid? id = null) : base(id ?? Guid.NewGuid())
         {
             Body = body;
             NoteCategoryId = noteCategoryId;
