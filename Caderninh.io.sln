@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caderninh.io.Domain", "Caderninh.io.Domain\Caderninh.io.Domain.csproj", "{EF5D95BC-9CE6-4BC9-ACCB-5939AA7BF5B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caderninh.io.Domain", "Caderninh.io.Domain\Caderninh.io.Domain.csproj", "{EF5D95BC-9CE6-4BC9-ACCB-5939AA7BF5B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caderninh.io.Infrastructure", "Caderninh.io.Infrastructure\Caderninh.io.Infrastructure.csproj", "{80638F49-E6AF-43B7-BBAF-D4B425DB0EC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caderninh.io.Infrastructure", "Caderninh.io.Infrastructure\Caderninh.io.Infrastructure.csproj", "{80638F49-E6AF-43B7-BBAF-D4B425DB0EC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caderninh.io.Contracts", "Caderninh.io.Contracts\Caderninh.io.Contracts.csproj", "{4FB524A9-0F52-4957-9D2F-D8560FA0E225}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caderninh.io.Contracts", "Caderninh.io.Contracts\Caderninh.io.Contracts.csproj", "{4FB524A9-0F52-4957-9D2F-D8560FA0E225}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caderninh.io.Application", "Caderninh.io.Application\Caderninh.io.Application.csproj", "{A5E58815-17C0-4D0F-98AC-E1F65295E21E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caderninh.io.Application", "Caderninh.io.Application\Caderninh.io.Application.csproj", "{A5E58815-17C0-4D0F-98AC-E1F65295E21E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caderninh.io.API", "Caderninh.io.API\Caderninh.io.API.csproj", "{59DA60C7-322C-4C54-970D-46DA05E34511}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Caderninh.io.API", "Caderninh.io.API\Caderninh.io.API.csproj", "{59DA60C7-322C-4C54-970D-46DA05E34511}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{71573115-1463-4052-93CD-23C6458B7A28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +44,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF5D95BC-9CE6-4BC9-ACCB-5939AA7BF5B5} = {71573115-1463-4052-93CD-23C6458B7A28}
+		{80638F49-E6AF-43B7-BBAF-D4B425DB0EC5} = {71573115-1463-4052-93CD-23C6458B7A28}
+		{4FB524A9-0F52-4957-9D2F-D8560FA0E225} = {71573115-1463-4052-93CD-23C6458B7A28}
+		{A5E58815-17C0-4D0F-98AC-E1F65295E21E} = {71573115-1463-4052-93CD-23C6458B7A28}
+		{59DA60C7-322C-4C54-970D-46DA05E34511} = {71573115-1463-4052-93CD-23C6458B7A28}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3D651618-E5C2-4A37-B63B-748FEEA53A3D}
