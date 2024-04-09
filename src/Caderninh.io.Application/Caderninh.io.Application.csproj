@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Caderninh.io.Domain\Caderninh.io.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\Behaviors\" />
-  </ItemGroup>
-
 </Project>
