@@ -1,4 +1,7 @@
-﻿namespace Caderninh.io.API
+﻿using Caderninh.io.API.Services;
+using Caderninh.io.Application.Common.Interfaces;
+
+namespace Caderninh.io.API
 {
     public static class DependencyInjection
     {
@@ -9,6 +12,8 @@
             services.AddSwaggerGen();
             services.AddProblemDetails();
             services.AddHttpContextAccessor();
+
+            services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
 
             return services;
         }
