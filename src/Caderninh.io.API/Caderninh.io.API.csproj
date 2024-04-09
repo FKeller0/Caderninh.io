@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Caderninh.io.Application\Caderninh.io.Application.csproj" />
     <ProjectReference Include="..\Caderninh.io.Contracts\Caderninh.io.Contracts.csproj" />
     <ProjectReference Include="..\Caderninh.io.Infrastructure\Caderninh.io.Infrastructure.csproj" />

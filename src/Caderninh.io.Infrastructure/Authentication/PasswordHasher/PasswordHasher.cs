@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Caderninh.io.Domain.Common.Interfaces;
 
-namespace GymManagement.Api.Authentication.PasswordHasher;
+namespace Caderninh.io.Infrastructure.Authentication.PasswordHasher;
 
 public partial class PasswordHasher : IPasswordHasher
 {

@@ -1,10 +1,11 @@
-﻿using Caderninh.io.Domain.Users;
+﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
+using Caderninh.io.Domain.Users;
+using Caderninh.io.Application.Common.Interfaces;
 
 namespace Caderninh.io.Infrastructure.Common.Persistence
 {
-    public class CaderninhoDbContext : DbContext
+    public class CaderninhoDbContext : DbContext, IUnitOfWork
     {
         public DbSet<User> Users { get; set; } = null!;
 

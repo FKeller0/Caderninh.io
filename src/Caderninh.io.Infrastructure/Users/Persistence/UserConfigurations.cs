@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Caderninh.io.Infrastructure.Users
+namespace Caderninh.io.Infrastructure.Users.Persistence
 {
     public class UserConfigurations : IEntityTypeConfiguration<User>
     {

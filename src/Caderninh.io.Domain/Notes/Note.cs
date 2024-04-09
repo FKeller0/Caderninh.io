@@ -12,7 +12,11 @@ namespace Caderninh.io.Domain.Notes
 
         public DateTime? UpdatedAt { get; set; }
 
-        public Note(Guid noteCategoryId, string body, Guid? id = null) : base(id ?? Guid.NewGuid())
+        public Note(
+            Guid noteCategoryId,
+            string body,
+            Guid? id = null)
+            : base(id ?? Guid.NewGuid())
         {
             Body = body;
             NoteCategoryId = noteCategoryId;
