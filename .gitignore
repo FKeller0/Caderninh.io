@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/src/Caderninh.io.API/Caderninhio.db
+*.db-shm
+*.db-wal
