@@ -9,13 +9,12 @@ Projected created with the intention of training good development practices and 
   - [x] Clean Architecture
   
 2. Patterns/Concepts
-  - [ ] CQRS
-  - [ ] Repository Pattern
-  - [ ] Unit of Work
-  - [ ] Mediator
-  - [ ] ORM
+  - [x] CQRS
+  - [x] Repository Pattern
+  - [x] Unit of Work
+  - [x] Mediator
   
 3. Libraries
   - [ ] Mapster
-  - [ ] Fluent Validations
-  - [ ] ErrorOr  
+  - [x] Fluent Validations
+  - [x] ErrorOr  
