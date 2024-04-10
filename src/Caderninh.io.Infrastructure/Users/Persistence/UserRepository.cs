@@ -12,6 +12,11 @@ namespace Caderninh.io.Infrastructure.Users.Persistence
             await _dbContext.AddAsync(user);
         }
 
+        public async Task<bool> ExistsByIdAsync(Guid id)
+        {
+            return await _dbContext.Users.AnyAsync(user => user.Id == id);
+        }
+
         public async Task<bool> ExistsByEmailAsync(string email)
         {
             return await _dbContext.Users.AnyAsync(user => user.Email == email);

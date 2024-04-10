@@ -8,8 +8,8 @@ using Caderninh.io.Application.Authentication.Queries.Login;
 
 namespace Caderninh.io.API.Controllers
 {
-    [Route("[controller]")]
     [AllowAnonymous]
+    [Route("[controller]")]
     public class AuthenticationController (ISender _mediator) : ApiController
     {        
 

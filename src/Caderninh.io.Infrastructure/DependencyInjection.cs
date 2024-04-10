@@ -11,6 +11,7 @@ using Caderninh.io.Infrastructure.Authentication.PasswordHasher;
 using Caderninh.io.Infrastructure.Users.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Caderninh.io.Infrastructure.Common.Persistence;
+using Caderninh.io.Infrastructure.NoteCategories.Persistence;
 
 namespace Caderninh.io.Infrastructure
 {
@@ -30,6 +31,7 @@ namespace Caderninh.io.Infrastructure
             services.AddDbContext<CaderninhoDbContext>(options => options.UseSqlite("Data Source = Caderninhio.db"));
 
             services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<INoteCategoryRepository, NoteCategoryRepository>();
             services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetRequiredService<CaderninhoDbContext>());
 
             return services;
