@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Caderninh.io.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class NoteCategoryFeature : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,8 +22,28 @@ namespace Caderninh.io.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NoteCategories", x => x.Name);
+                    table.PrimaryKey("PK_NoteCategories", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordHash = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_NoteCategories_Name_Id",
+                table: "NoteCategories",
+                columns: new[] { "Name", "Id" },
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -31,6 +51,9 @@ namespace Caderninh.io.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "NoteCategories");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

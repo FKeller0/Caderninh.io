@@ -1,9 +1,11 @@
-﻿using Caderninh.io.Application.NoteCategories.Commands.CreateNoteCategory;
-using Caderninh.io.Application.NoteCategories.Queries.GetNoteCategory;
-using Caderninh.io.Contracts.NoteCategories;
-using MediatR;
-using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Caderninh.io.Contracts.NoteCategories;
+using Caderninh.io.Application.NoteCategories.Commands.CreateNoteCategory;
+using Caderninh.io.Application.NoteCategories.Commands.DeleteNoteCategory;
+using Caderninh.io.Application.NoteCategories.Queries.GetNoteCategory;
+using Caderninh.io.Application.NoteCategories.Queries.ListNoteCategory;
 
 
 namespace Caderninh.io.API.Controllers
@@ -31,6 +33,18 @@ namespace Caderninh.io.API.Controllers
                 Problem);
         }
 
+        [HttpDelete("{noteCategoryId:guid}")]
+        public async Task<IActionResult> DeleteNoteCategory(Guid userId, Guid noteCategoryId)
+        {
+            var command = new DeleteNoteCategoryCommand(userId, noteCategoryId);
+
+            var deleteNoteCategoryResult = await _mediator.Send(command);
+
+            return deleteNoteCategoryResult.Match(
+                _ => NoContent(),
+                Problem);
+        }
+
         [HttpGet("{noteCategoryId:guid}")]
         public async Task<IActionResult> GetNoteCategory(Guid userId, Guid noteCategoryId)
         {
@@ -40,6 +54,18 @@ namespace Caderninh.io.API.Controllers
 
             return getNoteCategoryResult.Match(
                 noteCategory => Ok(new NoteCategoryResponse(noteCategory.Id, noteCategory.Name)),
+                Problem);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ListNoteCategories(Guid userId) 
+        {
+            var query = new ListNoteCategoriesQuery(userId);
+
+            var listNoteCategoriesQueryResult = await _mediator.Send(query);
+
+            return listNoteCategoriesQueryResult.Match(
+                noteCategories => Ok(noteCategories.ConvertAll(noteCategory => new NoteCategoryResponse(noteCategory.Id, noteCategory.Name))),
                 Problem);
         }
     }

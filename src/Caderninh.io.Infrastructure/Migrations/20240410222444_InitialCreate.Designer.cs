@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Caderninh.io.Infrastructure.Migrations
 {
     [DbContext(typeof(CaderninhoDbContext))]
-    [Migration("20240410205455_NoteCategoryFeature")]
-    partial class NoteCategoryFeature
+    [Migration("20240410222444_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,9 @@ namespace Caderninh.io.Infrastructure.Migrations
                         .HasColumnName("NoteIds");
 
                     b.HasKey("Name");
+
+                    b.HasIndex("Name", "Id")
+                        .IsUnique();
 
                     b.ToTable("NoteCategories");
                 });

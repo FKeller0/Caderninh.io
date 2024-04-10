@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Caderninh.io.Application.NoteCategories.Queries.GetNoteCategory
 {
-    public class GetNoteCategoryHandler(
+    public class GetNoteCategoryQueryHandler(
         IUsersRepository usersRepository,
         INoteCategoryRepository noteCategoryRepository)
             : IRequestHandler<GetNoteCategoryQuery, ErrorOr<NoteCategory>>
@@ -17,7 +17,7 @@ namespace Caderninh.io.Application.NoteCategories.Queries.GetNoteCategory
         {
             if (await _usersRepository.ExistsByIdAsync(request.UserId))
             {
-                return Error.NotFound("Subscription not found");
+                return Error.NotFound("User not found");
             }
 
             if (await _noteCategoryRepository.GetByIdAsync(request.NoteCategoryId) is not NoteCategory noteCategory)

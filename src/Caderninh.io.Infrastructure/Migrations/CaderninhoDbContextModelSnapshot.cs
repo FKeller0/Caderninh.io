@@ -35,6 +35,9 @@ namespace Caderninh.io.Infrastructure.Migrations
 
                     b.HasKey("Name");
 
+                    b.HasIndex("Name", "Id")
+                        .IsUnique();
+
                     b.ToTable("NoteCategories");
                 });
 

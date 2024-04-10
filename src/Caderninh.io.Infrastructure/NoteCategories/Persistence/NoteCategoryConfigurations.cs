@@ -18,8 +18,8 @@ namespace Caderninh.io.Infrastructure.NoteCategories.Persistence
             builder.HasKey(n => n.Name);
 
             builder.Property<List<Guid>>("_noteIds")
-            .HasColumnName("NoteIds")
-            .HasListOfIdsConverter();
+                .HasColumnName("NoteIds")
+                .HasListOfIdsConverter();
         }
     }
 }

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Caderninh.io.Domain.Users;
 using Caderninh.io.Application.Common.Interfaces;
 using Caderninh.io.Domain.Notes;
+using System;
 
 namespace Caderninh.io.Infrastructure.Common.Persistence
 {
@@ -21,7 +22,12 @@ namespace Caderninh.io.Infrastructure.Common.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.Entity<NoteCategory>()
+                .HasIndex(n => new { n.Name, n.Id })
+                .IsUnique(true);
+
             base.OnModelCreating(modelBuilder);
+
         }
     }
 }
