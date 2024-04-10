@@ -27,9 +27,9 @@ namespace Caderninh.io.Infrastructure.Authentication.JwtGenerator
             new(JwtRegisteredClaimNames.Name, user.Name),
             new(JwtRegisteredClaimNames.Email, user.Email),
             new("id", user.Id.ToString()),
-            new("permissions", "notes:create"),
-            new("permissions", "notes:update"),
-            new("permissions", "notes:delete")
+            //new("permissions", "notes:create"),
+            //new("permissions", "notes:update"),
+            //new("permissions", "notes:delete")
         };
 
             var token = new JwtSecurityToken(

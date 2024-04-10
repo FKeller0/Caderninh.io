@@ -4,12 +4,24 @@ using Throw;
 
 namespace Caderninh.io.Domain.Notes
 {
-    public class NoteCategory(string name, Guid userId, Guid? id = null) : Entity(id ?? Guid.NewGuid())
+    public class NoteCategory : Entity
     {
-        public Guid UserId { get; private set; } = userId;
+        public Guid UserId { get; private set; }
         public List<Guid> _noteIds { get; set; } = [];
 
-        public string Name { get; set; } = name;
+        public string Name { get; set; } = null!;
+
+        public NoteCategory(
+            string name,
+            Guid userId,
+            Guid? id = null)
+            : base(id ?? Guid.NewGuid())
+        {
+            Name = name;
+            UserId = userId;
+        }
+
+        public NoteCategory() { }
 
         public ErrorOr<Success> AddNotes(Note notes) 
         {

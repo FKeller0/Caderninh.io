@@ -23,5 +23,7 @@ namespace Caderninh.io.Domain.Notes
             Id = id ?? Guid.NewGuid();
             CreatedAt = DateTime.Now;
         }
+
+        public Note() { }
     }    
 }

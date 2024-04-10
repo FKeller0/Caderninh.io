@@ -6,6 +6,7 @@ namespace Caderninh.io.Application.Common.Interfaces
     {
         Task AddUserAsync(User user);
         Task<bool> ExistsByEmailAsync(string email);
+        Task<bool> ExistsByIdAsync(Guid id);
         Task<User?> GetByEmailAsync(string email);
         Task<User?> GetByIdAsync(Guid userId);
         Task UpdateAsync(User user);
