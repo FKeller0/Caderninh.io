@@ -10,7 +10,9 @@ namespace Caderninh.io.Domain.Notes
 
         public DateTime CreatedAt { get; }
 
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime LastUpdatedAt { get; set; }
+
+        public NoteCategory NoteCategory { get; set; } = null!;
 
         public Note(
             Guid noteCategoryId,
@@ -22,6 +24,7 @@ namespace Caderninh.io.Domain.Notes
             NoteCategoryId = noteCategoryId;
             Id = id ?? Guid.NewGuid();
             CreatedAt = DateTime.Now;
+            LastUpdatedAt = DateTime.Now;
         }
 
         public Note() { }

@@ -7,7 +7,8 @@ namespace Caderninh.io.Domain.Notes
     public class NoteCategory : Entity
     {
         public Guid UserId { get; private set; }
-        public List<Guid> _noteIds { get; set; } = [];
+
+        public ICollection<Note> Notes { get; } = new List<Note>();
 
         public string Name { get; set; } = null!;
 
@@ -22,14 +23,5 @@ namespace Caderninh.io.Domain.Notes
         }
 
         public NoteCategory() { }
-
-        public ErrorOr<Success> AddNotes(Note notes) 
-        {
-            _noteIds.Throw().IfContains(notes.Id);
-
-            _noteIds.Add(notes.Id);
-
-            return Result.Success;
-        }
     }
 }

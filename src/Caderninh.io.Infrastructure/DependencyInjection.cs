@@ -12,6 +12,7 @@ using Caderninh.io.Infrastructure.Users.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Caderninh.io.Infrastructure.Common.Persistence;
 using Caderninh.io.Infrastructure.NoteCategories.Persistence;
+using Caderninh.io.Infrastructure.Notes.Persistence;
 
 namespace Caderninh.io.Infrastructure
 {
@@ -31,7 +32,8 @@ namespace Caderninh.io.Infrastructure
             services.AddDbContext<CaderninhoDbContext>(options => options.UseSqlite("Data Source = Caderninhio.db"));
 
             services.AddScoped<IUsersRepository, UsersRepository>();
-            services.AddScoped<INoteCategoryRepository, NoteCategoryRepository>();
+            services.AddScoped<INoteCategoriesRepository, NoteCategoriesRepository>();
+            services.AddScoped<INotesRepository, NotesRepository>();
             services.AddScoped<IUnitOfWork>(serviceProvider => serviceProvider.GetRequiredService<CaderninhoDbContext>());
 
             return services;

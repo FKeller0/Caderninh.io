@@ -17,6 +17,33 @@ namespace Caderninh.io.Infrastructure.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
+            modelBuilder.Entity("Caderninh.io.Domain.Notes.Note", b =>
+                {
+                    b.Property<DateTime>("LastUpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Body")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("NoteCategoryId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("LastUpdatedAt");
+
+                    b.HasIndex("NoteCategoryId");
+
+                    b.HasIndex("Body", "Id")
+                        .IsUnique();
+
+                    b.ToTable("Notes");
+                });
+
             modelBuilder.Entity("Caderninh.io.Domain.Notes.NoteCategory", b =>
                 {
                     b.Property<string>("Name")
@@ -29,7 +56,6 @@ namespace Caderninh.io.Infrastructure.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("_noteIds")
-                        .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("NoteIds");
 
@@ -63,6 +89,23 @@ namespace Caderninh.io.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Caderninh.io.Domain.Notes.Note", b =>
+                {
+                    b.HasOne("Caderninh.io.Domain.Notes.NoteCategory", "NoteCategory")
+                        .WithMany("Notes")
+                        .HasForeignKey("NoteCategoryId")
+                        .HasPrincipalKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NoteCategory");
+                });
+
+            modelBuilder.Entity("Caderninh.io.Domain.Notes.NoteCategory", b =>
+                {
+                    b.Navigation("Notes");
                 });
 #pragma warning restore 612, 618
         }
