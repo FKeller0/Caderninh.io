@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Caderninh.io.Infrastructure.NoteCategories.Persistence
 {
-    public class NoteCategoryRepository(CaderninhoDbContext dbContext) : INoteCategoryRepository
+    public class NoteCategoriesRepository(CaderninhoDbContext dbContext) : INoteCategoriesRepository
     {
         private readonly CaderninhoDbContext _dbContext = dbContext;
 

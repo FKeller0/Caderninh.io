@@ -9,12 +9,12 @@ namespace Caderninh.io.Application.NoteCategories.Queries.ListNoteCategory
 {
     public class ListNoteCategoriesQueryHandler(
         IUsersRepository usersRepository,
-        INoteCategoryRepository noteCategoryRepository,
+        INoteCategoriesRepository noteCategoryRepository,
         ICurrentUserProvider currentUserProvider)
             : IRequestHandler<ListNoteCategoriesQuery, ErrorOr<List<NoteCategory>>>
     {
         private readonly IUsersRepository _usersRepository = usersRepository;
-        private readonly INoteCategoryRepository _noteCategoryRepository = noteCategoryRepository;
+        private readonly INoteCategoriesRepository _noteCategoryRepository = noteCategoryRepository;
         private readonly ICurrentUserProvider _currentUserProvider = currentUserProvider;
 
         public async Task<ErrorOr<List<NoteCategory>>> Handle(ListNoteCategoriesQuery query, CancellationToken cancellationToken)

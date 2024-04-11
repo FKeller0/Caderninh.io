@@ -6,14 +6,14 @@ namespace Caderninh.io.Application.NoteCategories.Commands.DeleteNoteCategory
 {
     public class DeleteNoteCategoryCommandHandler(
         IUsersRepository usersRepository,
-        INoteCategoryRepository noteCategoryRepository,
+        INoteCategoriesRepository noteCategoryRepository,
         ICurrentUserProvider currentUserProvider,
         IUnitOfWork unitOfWork)
             : IRequestHandler<DeleteNoteCategoryCommand, ErrorOr<Deleted>>
     {
 
         private readonly IUsersRepository _usersRepository = usersRepository;
-        private readonly INoteCategoryRepository _noteCategoryRepository = noteCategoryRepository;
+        private readonly INoteCategoriesRepository _noteCategoryRepository = noteCategoryRepository;
         private readonly ICurrentUserProvider _currentUserProvider = currentUserProvider;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 

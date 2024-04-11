@@ -7,13 +7,13 @@ namespace Caderninh.io.Application.NoteCategories.Commands.CreateNoteCategory
 {
     public class CreateNoteCategoryCommandHandler(
         IUsersRepository usersRepository,
-        INoteCategoryRepository noteCategoryRepository,
+        INoteCategoriesRepository noteCategoryRepository,
         ICurrentUserProvider currentUserProvider,
         IUnitOfWork unitOfWork)
             : IRequestHandler<CreateNoteCategoryCommand, ErrorOr<NoteCategory>>
     {
         private readonly IUsersRepository _usersRepository = usersRepository;
-        private readonly INoteCategoryRepository _noteCategoryRepository = noteCategoryRepository;
+        private readonly INoteCategoriesRepository _noteCategoryRepository = noteCategoryRepository;
         private readonly ICurrentUserProvider _currentUserProvider = currentUserProvider;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 

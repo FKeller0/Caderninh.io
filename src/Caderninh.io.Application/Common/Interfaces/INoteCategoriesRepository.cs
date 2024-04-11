@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Caderninh.io.Application.Common.Interfaces
 {
-    public interface INoteCategoryRepository
+    public interface INoteCategoriesRepository
     {
         Task AddNoteCategoryAsync(NoteCategory noteCategory);
         Task<bool> ExistsAsync(Guid id);

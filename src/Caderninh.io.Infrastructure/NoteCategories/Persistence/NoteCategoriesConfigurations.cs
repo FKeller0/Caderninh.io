@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Caderninh.io.Infrastructure.NoteCategories.Persistence
 {
-    public class NoteCategoryConfigurations : IEntityTypeConfiguration<NoteCategory>
+    public class NoteCategoriesConfigurations : IEntityTypeConfiguration<NoteCategory>
     {
         public void Configure(EntityTypeBuilder<NoteCategory> builder)
         {

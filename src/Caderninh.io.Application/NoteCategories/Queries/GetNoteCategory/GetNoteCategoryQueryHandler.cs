@@ -7,11 +7,11 @@ namespace Caderninh.io.Application.NoteCategories.Queries.GetNoteCategory
 {
     public class GetNoteCategoryQueryHandler(
         IUsersRepository usersRepository,
-        INoteCategoryRepository noteCategoryRepository)
+        INoteCategoriesRepository noteCategoryRepository)
             : IRequestHandler<GetNoteCategoryQuery, ErrorOr<NoteCategory>>
     {
         private readonly IUsersRepository _usersRepository = usersRepository;
-        private readonly INoteCategoryRepository _noteCategoryRepository = noteCategoryRepository;
+        private readonly INoteCategoriesRepository _noteCategoryRepository = noteCategoryRepository;
 
         public async Task<ErrorOr<NoteCategory>> Handle(GetNoteCategoryQuery request, CancellationToken cancellationToken)
         {
