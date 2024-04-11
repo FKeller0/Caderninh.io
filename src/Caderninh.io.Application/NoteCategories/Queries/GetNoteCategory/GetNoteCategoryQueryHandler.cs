@@ -15,15 +15,11 @@ namespace Caderninh.io.Application.NoteCategories.Queries.GetNoteCategory
 
         public async Task<ErrorOr<NoteCategory>> Handle(GetNoteCategoryQuery request, CancellationToken cancellationToken)
         {
-            if (await _usersRepository.ExistsByIdAsync(request.UserId))
-            {
-                return Error.NotFound("User not found");
-            }
+            if (await _usersRepository.ExistsByIdAsync(request.UserId))           
+                return Error.NotFound("User not found");            
 
-            if (await _noteCategoryRepository.GetByIdAsync(request.NoteCategoryId) is not NoteCategory noteCategory)
-            {
-                return Error.NotFound(description: "Note Category not found");
-            }
+            if (await _noteCategoryRepository.GetByIdAsync(request.NoteCategoryId) is not NoteCategory noteCategory)            
+                return Error.NotFound(description: "Note Category not found");            
 
             return noteCategory;
         }

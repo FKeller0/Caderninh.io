@@ -21,17 +21,13 @@ namespace Caderninh.io.Application.NoteCategories.Commands.CreateNoteCategory
         {            
             var currentUser = _currentUserProvider.GetCurrentUser();
 
-            if (currentUser.Id != command.UserId) 
-            {
-                return Error.Unauthorized("User is forbidden from taking this action.");
-            }
+            if (currentUser.Id != command.UserId)             
+                return Error.Unauthorized("User is forbidden from taking this action.");            
 
             var user = await _usersRepository.GetByIdAsync(command.UserId);
 
-            if (user is null)
-            {
-                return Error.NotFound(description: "User not found");
-            }
+            if (user is null)            
+                return Error.NotFound(description: "User not found");            
 
             var noteCategory = new NoteCategory(
                 name: command.Name,
