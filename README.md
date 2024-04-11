@@ -15,6 +15,7 @@ Projected created with the intention of training good development practices and 
   - [x] Mediator
   
 3. Libraries
-  - [ ] Mapster
   - [x] Fluent Validations
-  - [x] ErrorOr  
+  - [x] ErrorOr
+  - [x] MediatR
+  - [x] Throw
