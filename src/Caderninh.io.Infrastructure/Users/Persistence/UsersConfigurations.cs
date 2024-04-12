@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Caderninh.io.Infrastructure.Users.Persistence
 {
-    public class UserConfigurations : IEntityTypeConfiguration<User>
+    public class UsersConfigurations : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {

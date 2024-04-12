@@ -9,22 +9,23 @@ namespace Caderninh.io.Application.NoteCategories.Queries.ListNoteCategory
 {
     public class ListNoteCategoriesQueryHandler(
         IUsersRepository usersRepository,
-        INoteCategoryRepository noteCategoryRepository,
+        INoteCategoriesRepository noteCategoryRepository,
         ICurrentUserProvider currentUserProvider)
             : IRequestHandler<ListNoteCategoriesQuery, ErrorOr<List<NoteCategory>>>
     {
         private readonly IUsersRepository _usersRepository = usersRepository;
-        private readonly INoteCategoryRepository _noteCategoryRepository = noteCategoryRepository;
+        private readonly INoteCategoriesRepository _noteCategoryRepository = noteCategoryRepository;
         private readonly ICurrentUserProvider _currentUserProvider = currentUserProvider;
 
         public async Task<ErrorOr<List<NoteCategory>>> Handle(ListNoteCategoriesQuery query, CancellationToken cancellationToken)
         {
             var currentUser = _currentUserProvider.GetCurrentUser();
+            var user = await _usersRepository.GetByIdAsync(query.UserId);
 
             if (currentUser.Id != query.UserId)
                 return Error.Unauthorized("User is forbidden from taking this action.");
 
-            if (!await _usersRepository.ExistsByIdAsync(query.UserId))
+            if (user is null)
                 return Error.NotFound("User not found.");
 
             return await _noteCategoryRepository.ListByUserIdAsync(query.UserId);

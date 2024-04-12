@@ -12,6 +12,8 @@ namespace Caderninh.io.Domain.Notes
 
         public DateTime? UpdatedAt { get; set; }
 
+        public NoteCategory NoteCategory { get; set; } = null!;
+
         public Note(
             Guid noteCategoryId,
             string body,

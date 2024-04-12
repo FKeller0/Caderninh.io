@@ -15,10 +15,9 @@ namespace Caderninh.io.Infrastructure.Migrations
                 name: "NoteCategories",
                 columns: table => new
                 {
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    NoteIds = table.Column<string>(type: "TEXT", nullable: false),
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false)
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -39,21 +38,44 @@ namespace Caderninh.io.Infrastructure.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Notes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    NoteCategoryId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Body = table.Column<string>(type: "TEXT", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Notes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Notes_NoteCategories_NoteCategoryId",
+                        column: x => x.NoteCategoryId,
+                        principalTable: "NoteCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_NoteCategories_Name_Id",
-                table: "NoteCategories",
-                columns: new[] { "Name", "Id" },
-                unique: true);
+                name: "IX_Notes_NoteCategoryId",
+                table: "Notes",
+                column: "NoteCategoryId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "NoteCategories");
+                name: "Notes");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "NoteCategories");
         }
     }
 }

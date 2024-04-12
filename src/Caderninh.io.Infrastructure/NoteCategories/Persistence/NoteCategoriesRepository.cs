@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Caderninh.io.Infrastructure.NoteCategories.Persistence
 {
-    public class NoteCategoryRepository(CaderninhoDbContext dbContext) : INoteCategoryRepository
+    public class NoteCategoriesRepository(CaderninhoDbContext dbContext) : INoteCategoriesRepository
     {
         private readonly CaderninhoDbContext _dbContext = dbContext;
 
@@ -21,11 +21,12 @@ namespace Caderninh.io.Infrastructure.NoteCategories.Persistence
                 .AnyAsync(noteCategory => noteCategory.Id == id);
         }
 
-        //public Task<bool> ExistsByNameAsync(Guid userId, string name)
-        //{
-        //    //TODO - Validate if this is necessary
-        //    throw new NotImplementedException();
-        //}
+        public async Task<bool> ExistsByNameAsync(Guid userId, string name)
+        {            
+            return await _dbContext.NoteCategories
+                .AsNoTracking()
+                .AnyAsync(note => note.Name == name && note.UserId == userId);
+        }
 
         public async Task<NoteCategory?> GetByIdAsync(Guid id)
         {
@@ -36,6 +37,7 @@ namespace Caderninh.io.Infrastructure.NoteCategories.Persistence
         public async Task<List<NoteCategory>> ListByUserIdAsync(Guid userId)
         {
             return await _dbContext.NoteCategories
+                .AsNoTracking()
                 .Where(n => n.UserId == userId)
                 .ToListAsync();
         }

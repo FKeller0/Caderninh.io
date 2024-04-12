@@ -4,6 +4,7 @@ using Caderninh.io.Domain.Users;
 using Caderninh.io.Application.Common.Interfaces;
 using Caderninh.io.Domain.Notes;
 using System;
+using System.Reflection.Metadata;
 
 namespace Caderninh.io.Infrastructure.Common.Persistence
 {
@@ -11,6 +12,7 @@ namespace Caderninh.io.Infrastructure.Common.Persistence
     {
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<NoteCategory> NoteCategories { get; set; } = null!;
+        public DbSet<Note> Notes { get; set; } = null!;
 
         public CaderninhoDbContext(DbContextOptions options) : base(options) { }
 
@@ -22,9 +24,12 @@ namespace Caderninh.io.Infrastructure.Common.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
             modelBuilder.Entity<NoteCategory>()
-                .HasIndex(n => new { n.Name, n.Id })
-                .IsUnique(true);
+                .HasMany(e => e.Notes)
+                .WithOne(e => e.NoteCategory)
+                .HasForeignKey(e => e.NoteCategoryId)
+                .IsRequired();            
 
             base.OnModelCreating(modelBuilder);
 

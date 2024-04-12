@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Caderninh.io.Infrastructure.NoteCategories.Persistence
 {
-    public class NoteCategoryConfigurations : IEntityTypeConfiguration<NoteCategory>
+    public class NoteCategoriesConfigurations : IEntityTypeConfiguration<NoteCategory>
     {
         public void Configure(EntityTypeBuilder<NoteCategory> builder)
         {
@@ -13,13 +13,9 @@ namespace Caderninh.io.Infrastructure.NoteCategories.Persistence
             builder.Property(n => n.Id)
                 .ValueGeneratedNever();
 
-            builder.HasKey(n => n.UserId);
+            builder.Property(n => n.UserId);            
 
-            builder.HasKey(n => n.Name);
-
-            builder.Property<List<Guid>>("_noteIds")
-                .HasColumnName("NoteIds")
-                .HasListOfIdsConverter();
+            builder.Property(n => n.Name);            
         }
     }
 }

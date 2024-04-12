@@ -33,18 +33,6 @@ namespace Caderninh.io.API.Controllers
                 Problem);
         }
 
-        [HttpDelete("{noteCategoryId:guid}")]
-        public async Task<IActionResult> DeleteNoteCategory(Guid userId, Guid noteCategoryId)
-        {
-            var command = new DeleteNoteCategoryCommand(userId, noteCategoryId);
-
-            var deleteNoteCategoryResult = await _mediator.Send(command);
-
-            return deleteNoteCategoryResult.Match(
-                _ => NoContent(),
-                Problem);
-        }
-
         [HttpGet("{noteCategoryId:guid}")]
         public async Task<IActionResult> GetNoteCategory(Guid userId, Guid noteCategoryId)
         {
@@ -66,6 +54,18 @@ namespace Caderninh.io.API.Controllers
 
             return listNoteCategoriesQueryResult.Match(
                 noteCategories => Ok(noteCategories.ConvertAll(noteCategory => new NoteCategoryResponse(noteCategory.Id, noteCategory.Name))),
+                Problem);
+        }
+
+        [HttpDelete("{noteCategoryId:guid}")]
+        public async Task<IActionResult> DeleteNoteCategory(Guid userId, Guid noteCategoryId)
+        {
+            var command = new DeleteNoteCategoryCommand(userId, noteCategoryId);
+
+            var deleteNoteCategoryResult = await _mediator.Send(command);
+
+            return deleteNoteCategoryResult.Match(
+                _ => NoContent(),
                 Problem);
         }
     }

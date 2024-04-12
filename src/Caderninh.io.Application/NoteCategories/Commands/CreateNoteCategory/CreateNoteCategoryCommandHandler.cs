@@ -7,13 +7,13 @@ namespace Caderninh.io.Application.NoteCategories.Commands.CreateNoteCategory
 {
     public class CreateNoteCategoryCommandHandler(
         IUsersRepository usersRepository,
-        INoteCategoryRepository noteCategoryRepository,
+        INoteCategoriesRepository noteCategoryRepository,
         ICurrentUserProvider currentUserProvider,
         IUnitOfWork unitOfWork)
             : IRequestHandler<CreateNoteCategoryCommand, ErrorOr<NoteCategory>>
     {
         private readonly IUsersRepository _usersRepository = usersRepository;
-        private readonly INoteCategoryRepository _noteCategoryRepository = noteCategoryRepository;
+        private readonly INoteCategoriesRepository _noteCategoryRepository = noteCategoryRepository;
         private readonly ICurrentUserProvider _currentUserProvider = currentUserProvider;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
@@ -27,7 +27,10 @@ namespace Caderninh.io.Application.NoteCategories.Commands.CreateNoteCategory
             var user = await _usersRepository.GetByIdAsync(command.UserId);
 
             if (user is null)            
-                return Error.NotFound(description: "User not found");            
+                return Error.NotFound(description: "User not found");
+
+            if (await _noteCategoryRepository.ExistsByNameAsync(command.UserId, command.Name))
+                return Error.Conflict("Note category already exists.");
 
             var noteCategory = new NoteCategory(
                 name: command.Name,
