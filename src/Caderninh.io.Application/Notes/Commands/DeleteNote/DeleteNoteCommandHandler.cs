@@ -1,41 +1,40 @@
 ﻿using Caderninh.io.Application.Common.Interfaces;
-using Caderninh.io.Domain.Notes;
 using ErrorOr;
 using MediatR;
 
-namespace Caderninh.io.Application.Notes.Commands.CreateNote
+namespace Caderninh.io.Application.Notes.Commands.DeleteNote
 {
-    public class CreateNoteCommandHandler(
-        INoteCategoriesRepository noteCategoriesRepository,
+    public class DeleteNoteCommandHandler(
         INotesRepository notesRepository,
+        INoteCategoriesRepository noteCategoriesRepository,
         ICurrentUserProvider currentUserProvider,
         IUnitOfWork unitOfWork)
-            : IRequestHandler<CreateNoteCommand, ErrorOr<Note>>
+            : IRequestHandler<DeleteNoteCommand, ErrorOr<Deleted>>
     {
         private readonly INotesRepository _notesRepository = notesRepository;
         private readonly INoteCategoriesRepository _noteCategoriesRepository = noteCategoriesRepository;
         private readonly ICurrentUserProvider _currentUserProvider = currentUserProvider;
         private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
-        public async Task<ErrorOr<Note>> Handle(CreateNoteCommand command, CancellationToken cancellationToken)
+        public async Task<ErrorOr<Deleted>> Handle(DeleteNoteCommand command, CancellationToken cancellationToken)
         {
             var currentUser = _currentUserProvider.GetCurrentUser();
             var noteCategory = await _noteCategoriesRepository.GetByIdAsync(command.NoteCategoryId);
+            var note = await _notesRepository.GetByIdAsync(command.NoteId);
 
             if (noteCategory is null)
-                return Error.NotFound("Note category not found");
+                return Error.NotFound("Note Category not found.");
 
-            if (noteCategory.UserId != currentUser.Id)
+            if (currentUser.Id != noteCategory.UserId)
                 return Error.Unauthorized("User is forbidden from taking this action.");
 
-            var note = new Note(
-                noteCategoryId: command.NoteCategoryId,
-                body: command.Body);
+            if (note is null)
+                return Error.NotFound("Note not found.");
 
-            await _notesRepository.AddNoteAsync(note);            
+            await _notesRepository.RemoveAsync(note);
             await _unitOfWork.CommitChangesAsync();
 
-            return note;
+            return Result.Deleted;
         }
     }
 }

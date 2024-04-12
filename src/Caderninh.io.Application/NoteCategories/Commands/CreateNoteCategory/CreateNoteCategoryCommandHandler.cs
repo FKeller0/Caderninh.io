@@ -27,7 +27,10 @@ namespace Caderninh.io.Application.NoteCategories.Commands.CreateNoteCategory
             var user = await _usersRepository.GetByIdAsync(command.UserId);
 
             if (user is null)            
-                return Error.NotFound(description: "User not found");            
+                return Error.NotFound(description: "User not found");
+
+            if (await _noteCategoryRepository.ExistsByNameAsync(command.UserId, command.Name))
+                return Error.Conflict("Note category already exists.");
 
             var noteCategory = new NoteCategory(
                 name: command.Name,

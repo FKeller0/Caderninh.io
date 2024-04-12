@@ -11,14 +11,7 @@ namespace Caderninh.io.Infrastructure.Notes.Persistence
 
         public async Task AddNoteAsync(Note note)
         {
-            try 
-            {
-                await _dbContext.Notes.AddAsync(note);
-            }
-            catch (Exception ex) 
-            {
-                throw new Exception(ex.Message);
-            }            
+            await _dbContext.Notes.AddAsync(note);
         }
 
         public async Task<bool> ExistsAsync(Guid id)
@@ -36,12 +29,12 @@ namespace Caderninh.io.Infrastructure.Notes.Persistence
         public async Task<List<Note>> ListByNoteCategoryIdAsync(Guid noteCategoryId)
         {
             return await _dbContext.Notes
+                .AsNoTracking()
                 .Where(note => note.NoteCategoryId == noteCategoryId)
                 .ToListAsync();
         }
         public Task UpdateAsync(Note note)
         {
-            note.LastUpdatedAt = DateTime.UtcNow;
             _dbContext.Update(note);
             return Task.CompletedTask;
         }

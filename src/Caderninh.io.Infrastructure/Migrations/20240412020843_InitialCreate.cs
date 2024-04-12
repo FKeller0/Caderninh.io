@@ -17,13 +17,11 @@ namespace Caderninh.io.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     UserId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    NoteIds = table.Column<string>(type: "TEXT", nullable: true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_NoteCategories", x => x.Id);
-                    table.UniqueConstraint("AK_NoteCategories_Id", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,9 +44,9 @@ namespace Caderninh.io.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     NoteCategoryId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Body = table.Column<string>(type: "TEXT", nullable: true),
+                    Body = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    LastUpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -60,18 +58,6 @@ namespace Caderninh.io.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_NoteCategories_Name_Id",
-                table: "NoteCategories",
-                columns: new[] { "Name", "Id" },
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Notes_Body_Id",
-                table: "Notes",
-                columns: new[] { "Body", "Id" },
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notes_NoteCategoryId",

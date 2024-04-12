@@ -18,9 +18,4 @@
     <ProjectReference Include="..\Caderninh.io.Domain\Caderninh.io.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Notes\Commands\DeleteNote\" />
-    <Folder Include="Notes\Queries\ListNotes\" />
-  </ItemGroup>
-
 </Project>

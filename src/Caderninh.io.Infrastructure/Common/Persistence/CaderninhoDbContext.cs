@@ -29,15 +29,7 @@ namespace Caderninh.io.Infrastructure.Common.Persistence
                 .HasMany(e => e.Notes)
                 .WithOne(e => e.NoteCategory)
                 .HasForeignKey(e => e.NoteCategoryId)
-                .IsRequired();
-
-            modelBuilder.Entity<NoteCategory>()
-                .HasIndex(n => new { n.Name, n.Id })
-                .IsUnique(true);
-
-            modelBuilder.Entity<Note>()
-                .HasIndex(n => new { n.Body, n.Id })
-                .IsUnique(true);
+                .IsRequired();            
 
             base.OnModelCreating(modelBuilder);
 
